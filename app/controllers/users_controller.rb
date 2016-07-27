@@ -1,20 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_filter :authorize
-  # # GET /users
-  # # GET /users.json
-  # def index
-  #   @users = User.all
-  #   if @user.save
-  #    session[:user_id] = @user.id
-  #    redirect_to root_path
-  #  else
-  #    redirect_to register_path
-  #  end
-  # end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
   end
 
@@ -32,15 +18,12 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        session[:user_id] = @user.id
+        redirect_to '/users/new'
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        redirect_to register_path
       end
-    end
   end
 
   # PATCH/PUT /users/1
@@ -75,6 +58,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :first_name, :last_name, :password, :password_digest)
+      params.require(:user).permit(:username, :first_name, :last_name, :username, :password, :password_confirmation)
     end
 end
