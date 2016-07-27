@@ -7,13 +7,11 @@
 </head>
 <body>
 
-<!-- added these lines -->
 <% if current_user %>
-  Signed in as <%= current_user.name %> | <%= link_to "Logout", logout_path %>
+  Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
 <% else %>
-  <%= link_to 'Login', login_path %> | <%= link_to 'Register', register_path %>
+  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
 <% end %>
-
 <%= yield %>
 
 </body>
