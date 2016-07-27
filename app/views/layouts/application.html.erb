@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Codecollab</title>
-    <%= csrf_meta_tags %>
+<head>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<!-- added these lines -->
+<% if current_user %>
+  Signed in as <%= current_user.name %> | <%= link_to "Logout", logout_path %>
+<% else %>
+  <%= link_to 'Login', login_path %> | <%= link_to 'Register', register_path %>
+<% end %>
 
-  <body>
-    <%= yield %>
-  </body>
+<%= yield %>
+
+</body>
 </html>
