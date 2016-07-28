@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get 'workspaces/delete'
 
+  get 'workspaces/show'
+
   get 'workspaces/edit'
 
   get 'documents/index'
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
   get 'documents/create'
 
   get 'documents/delete'
+
+  get 'documents/show'
 
     root to: 'documents#index'
 
