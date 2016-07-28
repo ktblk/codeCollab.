@@ -3,11 +3,22 @@ class WorkspacesController < ApplicationController
   end
 
   def create
+
   end
 
-  def delete
+  def destroy
+    @workspace.destroy
+      respond_to do |format|
+        format.html { redirect_to documents_url }
+        format.json { head :no_content }
+      end
   end
 
   def edit
   end
+
+  def workspace
+    
+  end
+
 end
