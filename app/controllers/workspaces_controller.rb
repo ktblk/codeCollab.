@@ -15,6 +15,7 @@ class WorkspacesController < ApplicationController
   end
 
   def edit
+    
   end
 
   def workspace
