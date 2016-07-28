@@ -18,7 +18,10 @@ class WorkspacesController < ApplicationController
   end
 
   def workspace
-    
+    redirect_to workspace_url
+
+    #workspace url being that which sends us to the views page where all of the js/html/css is implemented
+
   end
 
 end
