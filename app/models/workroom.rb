@@ -1,0 +1,2 @@
+class Workroom < ApplicationRecord
+end

@@ -1,11 +1,29 @@
 Rails.application.routes.draw do
 
-    root to: 'users#new'
+  get 'workspaces/index'
+
+  get 'workspaces/create'
+
+  get 'workspaces/delete'
+
+  get 'workspaces/show'
+
+  get 'workspaces/edit'
+
+  get 'documents/index'
+
+  get 'documents/create'
+
+  get 'documents/delete'
+
+  get 'documents/show'
+
+    root to: 'documents#index'
 
     get '/login' => 'sessions#new'
     post '/login' => 'sessions#create'
     get '/logout' => 'sessions#destroy'
-    
+
 
     get '/signup' => 'users#new'
     # post '/users' => 'users#create'
