@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'auth/:provider/callback', to: 'sessions#create'
+   get 'auth/failure', to: redirect('/')
+
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   get 'workspaces/index'
 
   get 'workspaces/create'

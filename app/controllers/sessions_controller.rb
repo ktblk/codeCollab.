@@ -5,11 +5,15 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_username(params[:username])
     if @user && @user.authenticate(params[:password])
-   session[:user_id] = @user.id
-   redirect_to root_path
+      session[:user_id] = @user.id
+      redirect_to root_path
+    elsif env["omniauth.auth"]
+      user = User.from_omniauth(env["omniauth.auth"])
+      session[:user_id] = user.id
+      redirect_to root_path
     else
-  # If user's login doesn't work, send them back to the login form.
-    redirect_to documents_path
+      # If user's login doesn't work, send them back to the login form.
+      redirect_to documents_path
     end
   end
 
