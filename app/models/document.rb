@@ -1,4 +1,4 @@
 class Document < ApplicationRecord
   belongs_to :user
-  belongs_to :workroom
+  # belongs_to :workroom
 end
