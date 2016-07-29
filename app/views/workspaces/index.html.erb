@@ -1,3 +1,4 @@
+  <%= link_to "| Back to Dashboard", root_path %>
 <div id="firepad-container"></div>
 
 <div class="current-users ">
@@ -44,7 +45,6 @@ function getExampleRef() {
 
 window.onload = init;
 
-// + authData.uid.substr(10, 8)
 
 </script>
   <!-- this is the firechat section -->
@@ -55,7 +55,7 @@ window.onload = init;
       var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
       chatRef.onAuth(function(authData) {
         if (authData) {
-          chat.setUser(authData.uid, '<%=current_user.username %> ');
+          chat.setUser(authData.uid, '<%=current_user.username %>');
         } else {
           chatRef.authAnonymously(function(error, authData) {
             if (error) {

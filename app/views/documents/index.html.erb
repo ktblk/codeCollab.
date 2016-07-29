@@ -1,4 +1,7 @@
 <h2>Users Online</h2>
+<%= link_to "Create Workspace", workspaces_path %>
+<!-- The create workspace link does not create a brand new editor -->
+
 
 <% @users_sign_in.each do |uo| %>
   <div class="user-online">
