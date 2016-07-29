@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 
 gem 'rails', '~> 5.0.0'
+gem 'hirb'
 gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -12,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
+gem 'faker'
 
 gem 'paperclip'
 group :development, :test do
