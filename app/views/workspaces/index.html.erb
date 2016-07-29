@@ -12,7 +12,7 @@
 function init() {
   //// Initialize Firebase.
   var firepadRef = getExampleRef();
-  // var firepadRef = new Firebase('https://codecollab-c049c.firebaseio.com');
+
 
   var editor = ace.edit("firepad-container");
   editor.setTheme("ace/theme/textmate");
@@ -28,7 +28,7 @@ function init() {
 
 function getExampleRef() {
   var ref = new Firebase('https://firepad.firebaseio-demo.com');
-  // var ref = new Firebase('https://codecollab-c049c.firebaseio.com')
+  
   var hash = window.location.hash.replace(/#/g, '');
   if (hash) {
     ref = ref.child(hash);

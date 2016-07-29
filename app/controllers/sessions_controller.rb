@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
   # If user's login doesn't work, send them back to the login form.
-    redirect_to documents_path
+    redirect_to root_path
     end
   end
 
