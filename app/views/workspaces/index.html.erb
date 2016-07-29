@@ -1,1 +1,47 @@
 <div id="firepad-container"></div>
+
+<div class="current-users ">
+  <%= @users_sign_in%>
+</div>
+
+
+
+
+
+<script>
+function init() {
+  //// Initialize Firebase.
+  var firepadRef = getExampleRef();
+  // var firepadRef = new Firebase('https://codecollab-c049c.firebaseio.com');
+
+  var editor = ace.edit("firepad-container");
+  editor.setTheme("ace/theme/textmate");
+  var session = editor.getSession();
+  session.setUseWrapMode(true);
+  session.setUseWorker(false);
+  session.setMode("ace/mode/ruby");
+  //// Create Firepad.
+  var firepad = Firepad.fromACE(firepadRef, editor, {
+    defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+  });
+}
+
+function getExampleRef() {
+  var ref = new Firebase('https://firepad.firebaseio-demo.com');
+  // var ref = new Firebase('https://codecollab-c049c.firebaseio.com')
+  var hash = window.location.hash.replace(/#/g, '');
+  if (hash) {
+    ref = ref.child(hash);
+  } else {
+    ref = ref.push(); // generate unique location.
+    window.location = window.location + '#' + ref.key(); // add it as a hash to the URL.
+  }
+  if (typeof console !== 'undefined')
+    console.log('Firebase data: ', ref.toString());
+  return ref;
+}
+
+
+window.onload = init;
+
+</script>
