@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         @user.status = true
         redirect_to documents_index_path
       else
-        redirect_to register_path
+        redirect_to root_path
       end
   end
 
