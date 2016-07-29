@@ -1,15 +1,18 @@
-<h1>Login</h1>
+<!-- <h1>Login</h1> -->
 
 <%= form_tag '/login' do %>
+<div class="space">
+  <br>
+</div>
 
   <div class="field">
     <%= label_tag :username %>
-    <%= text_field_tag :username %>
+    <%= text_field_tag :username, nil, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= label_tag :password %>
-    <%= password_field_tag :password %>
+    <%= password_field_tag :password, nil, class: "form-control" %>
   </div>
   <%= submit_tag "Login" %>
 
