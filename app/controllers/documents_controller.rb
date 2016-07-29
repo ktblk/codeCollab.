@@ -22,9 +22,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  def save
-  end
-
   def destroy
     @document.destroy
       respond_to do |format|
