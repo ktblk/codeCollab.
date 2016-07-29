@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
       if @user.save
         session[:user_id] = @user.id
+        @user.status = true
         redirect_to documents_index_path
       else
         redirect_to register_path
