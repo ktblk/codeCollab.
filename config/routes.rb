@@ -1,22 +1,10 @@
 Rails.application.routes.draw do
 
-  get 'workspaces/index'
+  resource :users do
+    resources :documents
+  end
 
-  get 'workspaces/create'
-
-  get 'workspaces/delete'
-
-  get 'workspaces/show'
-
-  get 'workspaces/edit'
-
-  get 'documents/index'
-
-  get 'documents/create'
-
-  get 'documents/delete'
-
-  get 'documents/show'
+  resources :workspaces
 
     root to: 'documents#index'
 
@@ -28,5 +16,5 @@ Rails.application.routes.draw do
     get '/signup' => 'users#new'
     # post '/users' => 'users#create'
     resource :users , except: [:index]
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    # For details on the DSL available within this file, see  http://guides.rubyonrails.org/routing.html
 end
