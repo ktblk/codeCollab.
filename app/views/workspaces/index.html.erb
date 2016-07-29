@@ -1,3 +1,4 @@
+  <%= link_to "| Back to Dashboard", root_path %>
 <div id="firepad-container"></div>
 
 <div class="current-users ">
@@ -28,7 +29,7 @@ function init() {
 
 function getExampleRef() {
   var ref = new Firebase('https://firepad.firebaseio-demo.com');
-  
+
   var hash = window.location.hash.replace(/#/g, '');
   if (hash) {
     ref = ref.child(hash);
@@ -44,4 +45,23 @@ function getExampleRef() {
 
 window.onload = init;
 
+
 </script>
+  <!-- this is the firechat section -->
+
+    <div id="firechat-wrapper"></div>
+    <script type="text/javascript">
+      var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
+      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+      chatRef.onAuth(function(authData) {
+        if (authData) {
+          chat.setUser(authData.uid, '<%=current_user.username %>');
+        } else {
+          chatRef.authAnonymously(function(error, authData) {
+            if (error) {
+              console.log(error);
+            }
+          });
+        }
+      });
+    </script>
