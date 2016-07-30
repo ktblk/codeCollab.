@@ -17,8 +17,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
 
 
-      # session[:user_id] = @user.id
-      # redirect_to root_path
+
     else
   # If user's login doesn't work, send them back to the login form.
     redirect_to root_path
