@@ -1,16 +1,21 @@
-// This is a manifest file that'll be compiled into application.js, which will include all the files
-// listed below.
-//
-// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
-// or any plugin's vendor/assets/javascripts directory can be referenced here using a relative path.
-//
-// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-// compiled file. JavaScript code in this file should be added after the last require_* statement.
-//
-// Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
-// about supported directives.
-//
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on( "click", '#workspace', function() {
+  var $this = $(this)
+      url = $this.data('url');
+
+  var ref = new Firebase('https://firepad.firebaseio-demo.com');
+
+  var hash = window.location.hash.replace(/#/g, '');
+
+  if (hash) {
+    ref = ref.child(hash);
+    console.log("HERE")
+  } else {
+    ref = ref.push(); // generate unique location.
+    window.location = window.location + url + '/#' + ref.key(); // add it as a hash to the URL.
+  }
+});

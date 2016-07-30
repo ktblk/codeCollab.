@@ -1,3 +1,7 @@
+<% if current_user %>
+<%= link_to 'Save', users_documents_path, class: "btn" %>
+<% end %>
+
   <%= link_to "| Back to Dashboard", root_path %>
 <div id="firepad-container"></div>
 
@@ -6,62 +10,21 @@
 </div>
 
 
+<div id="firechat-wrapper"></div>
 
 
-
-<script>
-function init() {
-  //// Initialize Firebase.
-  var firepadRef = getExampleRef();
-
-
-  var editor = ace.edit("firepad-container");
-  editor.setTheme("ace/theme/textmate");
-  var session = editor.getSession();
-  session.setUseWrapMode(true);
-  session.setUseWorker(false);
-  session.setMode("ace/mode/ruby");
-  //// Create Firepad.
-  var firepad = Firepad.fromACE(firepadRef, editor, {
-    defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
-  });
-}
-
-function getExampleRef() {
-  var ref = new Firebase('https://firepad.firebaseio-demo.com');
-
-  var hash = window.location.hash.replace(/#/g, '');
-  if (hash) {
-    ref = ref.child(hash);
-  } else {
-    ref = ref.push(); // generate unique location.
-    window.location = window.location + '#' + ref.key(); // add it as a hash to the URL.
-  }
-  if (typeof console !== 'undefined')
-    console.log('Firebase data: ', ref.toString());
-  return ref;
-}
-
-
-window.onload = init;
-
-
-</script>
-  <!-- this is the firechat section -->
-
-    <div id="firechat-wrapper"></div>
-    <script type="text/javascript">
-      var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
-      var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-      chatRef.onAuth(function(authData) {
-        if (authData) {
-          chat.setUser(authData.uid, '<%=current_user.username %>');
-        } else {
-          chatRef.authAnonymously(function(error, authData) {
-            if (error) {
-              console.log(error);
-            }
-          });
+<script type="text/javascript">
+  var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
+  var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+  chatRef.onAuth(function(authData) {
+    if (authData) {
+      chat.setUser(authData.uid, '<%=current_user.username %>');
+    } else {
+      chatRef.authAnonymously(function(error, authData) {
+        if (error) {
+          console.log(error);
         }
       });
-    </script>
+    }
+  });
+</script>
