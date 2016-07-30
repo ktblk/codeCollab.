@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :authorize
-  
+
   def index
     @users_sign_in = User.where("status = ? AND id != ?", true, current_user)
     if session[:user_id].nil?
@@ -15,7 +15,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document }
+        format.html { redirect_to users_documents_path }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new }
@@ -26,10 +26,10 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document.destroy
-      respond_to do |format|
-        format.html { redirect_to documents_url }
-        format.json { head :no_content }
-      end
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.json { head :no_content }
+    end
   end
 
   private
