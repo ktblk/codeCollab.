@@ -21,6 +21,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         @user.status = true
+        @user.save!
         redirect_to root_path
       else
         redirect_to root_path

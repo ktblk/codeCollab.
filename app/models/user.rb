@@ -23,8 +23,8 @@ class User < ApplicationRecord
     self.password_confirmation = self.password
   end
 
-  # def full_name
-  #   "#{self.first_name.capitalize} #{self.last_name.capitalize}"
-  # end
+  def full_name
+    "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+  end
 
 end
