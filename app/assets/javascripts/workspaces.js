@@ -1,4 +1,8 @@
-$(function(){
+
+
+$(document).ready(function(){
+
+
   function init() {
     //// Initialize Firebase.
     var firepadRef = getRef();
@@ -14,7 +18,12 @@ $(function(){
     var firepad = Firepad.fromACE(firepadRef, editor, {
       defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
     });
+    firepad.on('ready', function() {
+      console.log(firepad.getText())
+    });
   }
+
+
 
   function getRef() {
     // var ref = new Firebase('https://firepad.firebaseio-demo.com');
@@ -48,4 +57,5 @@ $(function(){
       });
     }
   });
+
 })
