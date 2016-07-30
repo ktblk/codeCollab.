@@ -5,15 +5,18 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by_username(params[:username])
     if @user && @user.authenticate(params[:password])
+      @user.update(status: true)
+      @user.save!
       session[:user_id] = @user.id
       redirect_to root_path
     elsif env["omniauth.auth"]
       user = User.from_omniauth(env["omniauth.auth"])
+      @user.update(status: true)
+      @user.save!
       session[:user_id] = user.id
       redirect_to root_path
 
-      # @user.update(status: true)
-      # @user.save!
+
       # session[:user_id] = @user.id
       # redirect_to root_path
     else
