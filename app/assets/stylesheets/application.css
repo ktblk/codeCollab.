@@ -14,5 +14,51 @@
  *= require_self
  */
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
  html { height: 100%; }
  body { margin: 0; height: 100%; position: relative; }
+
+ body {
+   background-color: white;
+   color: black;
+   font-family: Avenir;
+ }
+
+ h1.project {
+   margin-left: 30px;
+   font-family: Avenir;
+ }
+
+ p {
+   font-family: Avenir;
+   font-size: 35px;
+   text-align: center;
+ }
+
+.links:hover {
+  color: black;
+}
+
+.links {
+  color: black;
+  font-size: 30px;
+}
+
+
+
+ /*a:hover {
+     background-color: white;
+     text-decoration:underline;
+     color: red;
+ }*/
+
+ .logins {
+   text-align: center;
+   font-family: Avenir
+ }
+
+ .container-fluid {
+   font-family: Avenir;
+ }

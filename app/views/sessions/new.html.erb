@@ -1,16 +1,26 @@
-<h1>Login</h1>
+<!-- <h1>Login</h1> -->
 
 <%= form_tag '/login' do %>
 
-  <div class="field">
+<div class="space">
+  <br>
+</div>
+
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-2 col-md-offset-5">
+  <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 clearfix" style="margin-bottom: 10px;">
     <%= label_tag :username %>
-    <%= text_field_tag :username %>
+    <%= text_field_tag :username, nil, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 clearfix" style="margin-bottom: 10px;">
     <%= label_tag :password %>
-    <%= password_field_tag :password %>
+    <%= password_field_tag :password, nil, class: "form-control" %>
   </div>
-  <%= submit_tag "Login" %>
+</div>
+</div>
+  <%= submit_tag "Login", class: "btn btn-default" %>
+</div>
 
 <% end %>

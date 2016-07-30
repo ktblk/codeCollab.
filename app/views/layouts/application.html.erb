@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <%= stylesheet_link_tag    "application"%>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" %>
   <%= csrf_meta_tags %>
 </head>
+  <body class="<%= "#{ controller.controller_name} " "#{controller.action_name}"%>" data-repl-key=" <%= ENV['REPLITAPI'] %>">
+    <h1 class="project">codeCollab.</h1>
+    <p>A simple text editor.</p><i class="fa fa-google-plus"></i>
+    <div class="logins">
+      <% if current_user %>
+        Signed in as <%=current_user.username %> &nbsp;&nbsp;/&nbsp;&nbsp; <%= link_to "Logout", '/logout' %>
+        <% else %>
+          <%= link_to 'Login', '/login', {:class => "links"} %> &nbsp;&nbsp;/&nbsp;&nbsp; <%= link_to 'Signup', '/signup', {:class => "links"}  %>  &nbsp;&nbsp;/&nbsp;&nbsp; <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", class: "links"  %>
+        <% end %>
+        <%= yield %>
+      </div>
 
-<!-- <body class="<%#= "#{ controller.controller_name} " "#{controller.action_name}"%>"> -->
-<body class="<%= "#{ controller.controller_name} " "#{controller.action_name}"%>" data-repl-key=" <%= ENV['REPLITAPI'] %>">
-  <% if current_user %>
-  Signed in as <%=current_user.username %> | <%= link_to "Logout", '/logout' %>
-  <% else %>
-    <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>  | <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-  <% end %>
-  <%= yield %>
+    <div class="javascript">
+      <%= javascript_include_tag "application"%>
+      <% if controller_name == "workspaces" %>
+      <%= javascript_include_tag "workspaces"%>
+        <script src="https://repl.it/lib/api.js" type="text/javascript" charset="utf-8"></script>
+        <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/mode-javascript.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/theme-textmate.js"></script>
+        <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.css" />
+        <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.css" />
+        <script src="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.js"></script>
 
-
-  <div class="javascript">
-    <%= javascript_include_tag "application"%>
-    <% if controller_name == "workspaces" %>
-    <%= javascript_include_tag "workspaces"%>
-      <script src="https://repl.it/lib/api.js" type="text/javascript" charset="utf-8"></script>
-      <script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/ace.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/mode-javascript.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.2/theme-textmate.js"></script>
-      <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.css" />
-      <script src="https://cdn.firebase.com/libs/firepad/1.3.0/firepad.min.js"></script>
-      <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.css" />
-      <script src="https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.js"></script>
-
-    <%end%>
-  </div>
-</body>
+      <%end%>
+    </div>
+  </body>
 </html>
