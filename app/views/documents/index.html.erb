@@ -1,5 +1,5 @@
 <h2>Users Online</h2>
-<%= button_tag "Create Workspace", :'data-url' => workspaces_path, id: "workspace" %>
+<%#= button_tag "Create Workspace", :'data-url' => workspaces_path, id: "workspace" %>
 <!-- The create workspace link does not create a brand new editor -->
 
 
@@ -9,3 +9,5 @@
       <span><%= uo.full_name %></span>
   </div>
 <%end%>
+
+<%= link_to 'WORKSPACE', workspace_path, id: "workspace" %>
