@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :documents
   end
 
-  resources :workspaces
+  get 'workspace' => 'workspaces#index'
 
     root to: 'documents#index'
 

@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  before_action :authorize
+  
   def index
     @users_sign_in = User.where("status = ? AND id != ?", true, current_user)
     if session[:user_id].nil?
