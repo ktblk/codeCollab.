@@ -1,4 +1,6 @@
-$(function(){
+$(document).ready(function(){
+
+
   function init() {
     //// Initialize Firebase.
     var firepadRef = getRef();
@@ -14,7 +16,39 @@ $(function(){
     var firepad = Firepad.fromACE(firepadRef, editor, {
       defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
     });
+
+
+    var fire_text = "";
+    firepad.on("ready", function(){
+      fire_text = firepad.getText();
+    });
+
+    firepad.on('synced', function(isSynced) {
+      // isSynced will be false immediately after the user edits the pad,
+      // and true when their edit has been saved to Firebase.
+      fire_text = firepad.getText()
+    });
+
+    $( "button" ).click(function() {
+      $.ajax({
+        url : "/users/documents",
+        type: "POST",
+        data : { document: { file: fire_text } },
+        success: function(data) {
+          console.log("Success", data);
+        },
+        error: function (error){
+          console.error(error);
+        }
+      });
+    });
+
   }
+
+
+
+
+
 
   function getRef() {
     // var ref = new Firebase('https://firepad.firebaseio-demo.com');
@@ -48,4 +82,5 @@ $(function(){
       });
     }
   });
+
 })
