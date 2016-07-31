@@ -1,16 +1,16 @@
 body {
   background-color: #fff;
-  color: #333;
+  color: black;
   // font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 18px;
   margin: 33px;
 }
 
 pre {
-  background-color: #eee;
+  background-color: black;
   padding: 10px;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 a {
@@ -21,7 +21,7 @@ a {
   }
 
   &:hover {
-    color: green;
+    color: white;
     background-color: white;
   }
 }
@@ -79,4 +79,12 @@ div {
 
 label {
   display: block;
+}
+
+.field {
+  text-align: left;
+}
+
+.row {
+  text-align: left;
 }
