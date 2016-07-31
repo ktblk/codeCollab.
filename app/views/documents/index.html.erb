@@ -2,6 +2,15 @@
 <%#= button_tag "Create Workspace", :'data-url' => workspaces_path, id: "workspace" %>
 <!-- The create workspace link does not create a brand new editor -->
 
+<% @documents.each do |files| %>
+  <div class="available-files">
+    <strong> File Number: </strong>
+    <% file = files.id %>
+    <%= link_to workspace_path(f_id: file), id: "workspace" do %>
+      File Open <%= file %>
+    <%end%>
+  </div>
+<%end%>
 
 <% @users_sign_in.each do |uo| %>
   <div class="user-online">
