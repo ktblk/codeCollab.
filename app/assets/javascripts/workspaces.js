@@ -14,7 +14,6 @@ $(document).ready(function(){
 
     //// Create Firepad.
     var file_id = window.location.search.split("=")[1];
-
     if ( file_id != undefined) {
       $.ajax({
         url: "documents/retreive/"+ file_id,
