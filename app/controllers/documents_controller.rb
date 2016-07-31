@@ -25,11 +25,18 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
+    @document = Document.find(params[:id])
     @document.destroy
     respond_to do |format|
       format.html { redirect_to root_path }
       format.json { head :no_content }
     end
+  end
+
+  def retreiver
+    response = Document.find(params[:file_id])
+    render plain: response.file
+
   end
 
   private
