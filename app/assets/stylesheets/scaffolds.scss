@@ -1,35 +1,28 @@
 body {
   background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-  margin: 33px;
-}
-
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  color: black;
+  // font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 12px;
   line-height: 18px;
   margin: 33px;
 }
 
 pre {
-  background-color: #eee;
+  background-color: black;
   padding: 10px;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 a {
-  color: #000;
+  color: black;
 
   &:visited {
-    color: #666;
+    color: black;
   }
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: white;
+    background-color: white;
   }
 }
 
@@ -86,4 +79,12 @@ div {
 
 label {
   display: block;
+}
+
+.field {
+  text-align: left;
+}
+
+.row {
+  text-align: left;
 }
