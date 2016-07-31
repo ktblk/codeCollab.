@@ -13,12 +13,33 @@ $(document).ready(function(){
     session.setMode("ace/mode/javascript");
 
     //// Create Firepad.
-    var firepad = Firepad.fromACE(firepadRef, editor, {
-      defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
-    });
+    var file_id = window.location.search.split("=")[1];
 
+    if ( file_id != undefined) {
+      $.ajax({
+        url: "documents/retreive/"+ file_id,
+        type: "GET",
+        success: function(data) {
+          var firepad = Firepad.fromACE(firepadRef, editor, {
+            defaultText: data
+          });
+          execute(firepad);
+        },
+        error: function (error){
+          console.warn("Error", error);
+        }
+      });
+    }else {
+      var firepad = Firepad.fromACE(firepadRef, editor, {
+        defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+      })
+      execute(firepad);
+    }
+  }
 
+  function execute(firepad){
     var fire_text = "";
+
     firepad.on("ready", function(){
       fire_text = firepad.getText();
     });
@@ -29,7 +50,7 @@ $(document).ready(function(){
       fire_text = firepad.getText()
     });
 
-    $( "button" ).click(function() {
+    $( "button.savefile" ).click(function() {
       $.ajax({
         url : "/users/documents",
         type: "POST",
@@ -42,13 +63,7 @@ $(document).ready(function(){
         }
       });
     });
-
   }
-
-
-
-
-
 
   function getRef() {
     // var ref = new Firebase('https://firepad.firebaseio-demo.com');
@@ -68,6 +83,8 @@ $(document).ready(function(){
   }
 
   window.onload = init;
+
+
   var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
   var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
   var username = $('#currName').val();
@@ -81,6 +98,6 @@ $(document).ready(function(){
         }
       });
     }
-  });
+  })
 
 })
