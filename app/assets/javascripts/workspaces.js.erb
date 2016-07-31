@@ -1,116 +1,115 @@
 $(document).ready(function(){
 
-  
+
   Promise.resolve($("body").data("repl-key")).then(function(promise) {
-         return promise;
-      }).then(function(value){
-  function init() {
-    //// Initialize Firebase.
-    var firepadRef = getRef();
-
-    var editor = ace.edit("firepad-container");
-    editor.setTheme("ace/theme/textmate");
-    var session = editor.getSession();
-    session.setUseWrapMode(true);
-    session.setUseWorker(false);
-    session.setMode("ace/mode/javascript");
-
-    //// Create Firepad.
-    var file_id = window.location.search.split("=")[1];
-    if ( file_id != undefined) {
-      $.ajax({
-        url: "documents/retreive/"+ file_id,
-        type: "GET",
-        success: function(data) {
-          var firepad = Firepad.fromACE(firepadRef, editor, {
-            defaultText: data
-          });
-          execute(firepad);
-        },
-        error: function (error){
-          console.warn("Error", error);
-        }
-      });
-    }else {
-      var firepad = Firepad.fromACE(firepadRef, editor, {
-        defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
-      })
-      execute(firepad);
-    }
-  }
-
-  function execute(firepad){
+    return promise;
+  })
+  .then(function(value){
     var fire_text = "";
+    function init() {
+      //// Initialize Firebase.
+      var firepadRef = getRef();
 
-    firepad.on("ready", function(){
-      fire_text = firepad.getText();
-    });
+      var editor = ace.edit("firepad-container");
+      editor.setTheme("ace/theme/textmate");
+      var session = editor.getSession();
+      session.setUseWrapMode(true);
+      session.setUseWorker(false);
+      session.setMode("ace/mode/javascript");
 
-    firepad.on('synced', function(isSynced) {
-      // isSynced will be false immediately after the user edits the pad,
-      // and true when their edit has been saved to Firebase.
-      fire_text = firepad.getText()
-    });
-
-    $( "button.savefile" ).click(function() {
-      $.ajax({
-        url : "/users/documents",
-        type: "POST",
-        data : { document: { file: fire_text } },
-        success: function(data) {
-          console.log("Success", data);
-        },
-        error: function (error){
-          console.error(error);
-        }
-      });
-    });
-<<<<<<< 112b7e01cb6f83637564d9eba0122bf55140ff2c:app/assets/javascripts/workspaces.js
-  }
-
-=======
-
-
-    var TOKEN = { time_created: 1469931910000, msg_mac: `${value.trim()}` }
-      var repl = new ReplitClient('api.repl.it', '80', 'ruby', TOKEN);
-      // var repl = new ReplitClient('api.repl.it', 80, 'ruby', 'vmjek6l636aeibns');
-
-      repl.connect().then(
-        function() {
-          document.querySelector('.status').innerHTML = 'connected';
-          start();
-        },
-        function() {
-          document.querySelector('.status').innerHTML = 'failed';
-        }
-      );
-
-      function start() {
-
-        $( "#runcode" ).on('click', function() {
-
-          // document.querySelector('.out').innerHTML = "";
-          repl.evaluate(
-            fire_text,
-            {
-              stdout: function(str) {
-                document.querySelector('.out').innerHTML += str;
-              }
-            }
-          ).then(
-            function(result) {
-              // document.querySelector('.result').innerHTML += (result.error || result.data) + '\n';
-            },
-            function(err) {
-              console.error(err);
-            }
-          );
+      //// Create Firepad.
+      var file_id = window.location.search.split("=")[1];
+      if ( file_id != undefined) {
+        $.ajax({
+          url: "documents/retreive/"+ file_id,
+          type: "GET",
+          success: function(data) {
+            var firepad = Firepad.fromACE(firepadRef, editor, {
+              defaultText: data
+            });
+            execute(firepad);
+          },
+          error: function (error){
+            console.warn("Error", error);
+          }
         });
+      }else {
+        var firepad = Firepad.fromACE(firepadRef, editor, {
+          defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+        })
+        execute(firepad);
       }
-  }
+    }
+
+    function execute(firepad){
+
+      firepad.on("ready", function(){
+        fire_text = firepad.getText();
+      });
+
+      firepad.on('synced', function(isSynced) {
+        // isSynced will be false immediately after the user edits the pad,
+        // and true when their edit has been saved to Firebase.
+        fire_text = firepad.getText()
+      });
+
+      $("#saveFile").click(function() {
+        $.ajax({
+          url : "/users/documents",
+          type: "POST",
+          data : { document: { file: fire_text } },
+          success: function(data) {
+            console.log("Success");
+            window.location.href = '/'
+          },
+          error: function (error){
+            console.error(error);
+          }
+        });
+      });
+    }
 
 
->>>>>>> runs code and synched with last update:app/assets/javascripts/workspaces.js.erb
+    var TOKEN = { time_created: 1469931910000, msg_mac: `${value.trim()}` };
+    var repl = new ReplitClient('api.repl.it', '80', 'ruby', TOKEN);
+
+    repl.connect().then(
+      function() {
+        document.querySelector('.status').innerHTML = 'connected';
+        start();
+      },
+      function() {
+        document.querySelector('.status').innerHTML = 'failed';
+      }
+    )
+
+    function start() {
+
+      $( "#runcode" ).on('click', function() {
+
+        // document.querySelector('.out').innerHTML = "";
+        repl.evaluate(
+          fire_text,
+          {
+            stdout: function(str) {
+              document.querySelector('.out').innerHTML += str;
+            }
+          }
+        ).then(
+          function(result) {
+            // document.querySelector('.result').innerHTML += (result.error || result.data) + '\n';
+          },
+          function(err) {
+            console.error(err);
+          }
+        );
+      });
+    }
+
+    window.onload = init;
+
+  });
+
   function getRef() {
     // var ref = new Firebase('https://firepad.firebaseio-demo.com');
     var ref = new Firebase('https://firepadcollap.firebaseio.com/firepad');
@@ -128,9 +127,6 @@ $(document).ready(function(){
     return ref;
   }
 
-  window.onload = init;
-
-
   var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
   var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
   var username = $('#currName').val();
@@ -144,7 +140,5 @@ $(document).ready(function(){
         }
       });
     }
-  })
-
-})
+  });
 })

@@ -1,6 +1,4 @@
-<!-- <% if current_user %>
-  <%= link_to 'Save', users_documents_path, class: "btn" %>
-<% end %> -->
+
 <div class="status">connecting..</div>
 <input />
 <a id="runcode">run</a>
@@ -8,12 +6,7 @@
 
 
 <% if current_user %>
-<!-- <%#= link_to 'Save', users_documents_path, class: "btn" %> -->
-  <%= link_to 'Save', users_documents_path, class: "btn", id: "getPadValue" %>
-<% end %>
-
-<% if current_user %>
-  <button class="savefile"> Save File </button>
+  <button id="saveFile"> Save File </button>
 <%end%>
 
   <%= link_to "| Back to Dashboard", root_path %>
@@ -21,7 +14,7 @@
 
 <div class="current-users ">
  <%#= @users_sign_in%>
-  <% @users_sign_in%>
+  <% @users_sign_in %>
 </div>
 
 
