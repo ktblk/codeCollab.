@@ -8,6 +8,9 @@
     <% file = files.id %>
     <%= link_to workspace_path(f_id: file), id: "workspace" do %>
       File Open <%= file %>
+
+      <%= link_to 'Destroy', users_document_path(file),
+            data: {:confirm => 'Are you sure?'}, :method => :delete %>
     <%end%>
   </div>
 <%end%>
