@@ -1,6 +1,15 @@
 <!-- <% if current_user %>
   <%= link_to 'Save', users_documents_path, class: "btn" %>
 <% end %> -->
+<div class="status">connecting..</div>
+<input />
+<a id="runcode">run</a>
+<pre class="out"></pre>
+
+
+<% if current_user %>
+  <%= link_to 'Save', users_documents_path, class: "btn", id: "getPadValue" %>
+<% end %>
 
 <% if current_user %>
   <button class="savefile"> Save File </button>
@@ -22,8 +31,8 @@
 <%= hidden_field_tag :id, current_user.username, id: 'currName' %>
 
 
-<!--
-<script type="text/javascript">
+
+<!--<script type="text/javascript">
   var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
   var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
   chatRef.onAuth(function(authData) {

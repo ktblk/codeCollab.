@@ -1,6 +1,7 @@
 $(document).ready(function(){
-
-
+  Promise.resolve($("body").data("repl-key")).then(function(promise) {
+         return promise;
+      }).then(function(value){
   function init() {
     //// Initialize Firebase.
     var firepadRef = getRef();
@@ -62,8 +63,52 @@ $(document).ready(function(){
         }
       });
     });
+<<<<<<< 112b7e01cb6f83637564d9eba0122bf55140ff2c:app/assets/javascripts/workspaces.js
   }
 
+=======
+
+
+    var TOKEN = { time_created: 1469931910000, msg_mac: `${value.trim()}` }
+      var repl = new ReplitClient('api.repl.it', '80', 'ruby', TOKEN);
+      // var repl = new ReplitClient('api.repl.it', 80, 'ruby', 'vmjek6l636aeibns');
+
+      repl.connect().then(
+        function() {
+          document.querySelector('.status').innerHTML = 'connected';
+          start();
+        },
+        function() {
+          document.querySelector('.status').innerHTML = 'failed';
+        }
+      );
+
+      function start() {
+
+        $( "#runcode" ).on('click', function() {
+
+          // document.querySelector('.out').innerHTML = "";
+          repl.evaluate(
+            fire_text,
+            {
+              stdout: function(str) {
+                document.querySelector('.out').innerHTML += str;
+              }
+            }
+          ).then(
+            function(result) {
+              // document.querySelector('.result').innerHTML += (result.error || result.data) + '\n';
+            },
+            function(err) {
+              console.error(err);
+            }
+          );
+        });
+      }
+  }
+
+
+>>>>>>> runs code and synched with last update:app/assets/javascripts/workspaces.js.erb
   function getRef() {
     // var ref = new Firebase('https://firepad.firebaseio-demo.com');
     var ref = new Firebase('https://firepadcollap.firebaseio.com/firepad');
@@ -99,4 +144,5 @@ $(document).ready(function(){
     }
   })
 
+})
 })
