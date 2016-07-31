@@ -6,6 +6,7 @@
   <%= csrf_meta_tags %>
 </head>
 
+<!-- <body class="<%#= "#{ controller.controller_name} " "#{controller.action_name}"%>"> -->
 <body class="<%= "#{ controller.controller_name} " "#{controller.action_name}"%>" data-repl-key=" <%= ENV['REPLITAPI'] %>">
   <% if current_user %>
   Signed in as <%=current_user.username %> | <%= link_to "Logout", '/logout' %>
