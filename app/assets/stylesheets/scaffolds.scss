@@ -21,7 +21,21 @@ a {
   }
 
   &:hover {
-    color: white;
+    color: #26a69a;
+    background-color: white;
+  }
+}
+
+img {
+  opacity: 0.5;
+}
+
+ul {
+  color: black;
+  text-align: center;
+  
+  &:hover {
+    color: #26a69a;
     background-color: white;
   }
 }

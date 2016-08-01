@@ -38,13 +38,16 @@ p {
  text-align: center;
 }
 
-.links:hover {
-  color: black;
-}
-
 .links {
   color: black;
-  font-size: 25px;
+  font-size: 20px;
+  transition: color 0.5s ease;
+}
+
+.links:hover {
+  color: #26a69a;
+  // text-decoration: underline;
+  // border-bottom: 0.5px solid #26a69a;
 }
 
 
@@ -56,14 +59,22 @@ p {
 
  .logins {
    text-align: center;
-   font-family: Avenir
+   font-family: Avenir;
+   font-size: 25px;
  }
 
-.container-fluid {
-  font-family: Avenir;
- /*position:absolute;*/
-}
+ .actions {
+   text-align: center;
+ }
 
-.button-collapse {
-  float: right;
+ .container {
+   font-family: Avenir;
+   /*position:absolute;*/
+
+   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+   -moz-animation: fadein 2s; /* Firefox < 16 */
+   -ms-animation: fadein 2s; /* Internet Explorer */
+   -o-animation: fadein 2s; /* Opera < 12.1 */
+   animation: fadein 2s;
+
 }
