@@ -21,13 +21,6 @@ class WorkspacesController < ApplicationController
     }
     render json: token
   end
-    # gen_token().to_json
-
-
-  def repltoken
-    #value of first element of hash token set equal to a variable
-  end
-
 
 
 
