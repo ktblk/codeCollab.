@@ -11,10 +11,12 @@
  //$('.collapsible').collapsible();
 
 // Show sideNav
-$('.button-collapse').sideNav('show');
+// $('.button-collapse').sideNav('show');
 // Hide sideNav
-$('.button-collapse').sideNav('hide');
-
+// $('.button-collapse').sideNav('hide');
+$('.button-collapse').on('click', function(){
+  $('#slide-out').css('transition', '1s')
+});
 $('.button-collapse').sideNav({
      menuWidth: 200, // Default is 240
      edge: 'right', // Choose the horizontal origin

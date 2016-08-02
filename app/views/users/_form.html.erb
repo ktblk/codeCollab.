@@ -35,21 +35,21 @@
           <%= f.text_field :last_name, class: "validate" %>
         </div>
 
-
         <div class="input-field col s6">
           <%= f.label :password %>
-          <%= f.text_field :password, class: "validate" %>
+          <%= f.password_field :password, class: "validate" %>
         </div>
         <div class="input-field col s6">
           <%= f.label :password_confirmation %>
-          <%= f.text_field :password_confirmation, class: "validate" %>
+          <%= f.password_field :password_confirmation, class: "validate" %>
         </div>
       </div>
+
     </div>
   </div>
 </div>
 
-<div class="actions">
-  <a class="waves-effect waves-teal btn"><%= f.submit 'Register' %></a>
+<div class="actions" style="margin-top: -10px;">
+  <a class="waves-effect waves-teal cyan lighten-2 btn"><%= f.submit 'Register' %></a>
 </div>
 <% end %>

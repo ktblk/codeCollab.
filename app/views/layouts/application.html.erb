@@ -3,6 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <link rel="icon" type="image/png" href="/assets/favicon">
   <title>codeCollab.</title>
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -15,32 +16,29 @@
   <%= csrf_meta_tags %>
 </head>
   <body class="<%= "#{ controller.controller_name} " "#{controller.action_name}"%>" data-repl-key=" <%= ENV['REPLITAPI'] %>">
-      <h1 class="project"><b>codeCollab.</b></h1>
+      <h1 class="project"><b>codeCollab<span>.</span></b></h1>
 
       <ul id="slide-out" class="side-nav">
-         <li><div class="userView"><br>
-           <img class="background" src="images/office.jpg">
-         </div></li>
-         <li><a class="waves-effect hoverable" href="#!">Collab.</a></li>
-         <li><a class="waves-effect hoverable" href="#!">Contact.</a></li>
-         <li><a class="waves-effect hoverable" href="#!">Company.</a></li>
+         <a class="cross" href="#" style="font-size: 40px; margin-top: 20px;">x</a><br><br><br>
+         <li><a class="waves-effect waves-light" style="font-size: 20px" href="#!">Collab<span>.</span></a></li>
+         <li><a class="waves-effect waves-light" style="font-size: 20px" href="#!">Crew<span>.</span></a></li>
+         <li><a class="waves-effect waves-light" style="font-size: 20px" href="#!">Connect<span>.</span></a></li>
        </ul>
-       <a href="#" data-activates="slide-out" class="button-collapse" style="float: right; margin-right: 50px; margin-top: -80px;"><i class="material-icons" style="font-size: 50px;">menu</i></a>
-
+       <a href="#" data-activates="slide-out" class="button-collapse" style="float: right; margin-right: 76px; margin-top: -80px;"><i class="material-icons" style="font-size: 50px;">menu</i></a>
 
       <br><br>
 
-      <p>A simple text editor. Boom.</p>
+      <p>A simple and interactive text editor. Boom.</p>
 
     <div class="logins">
       <% if current_user %>
-      Signed in as <%=current_user.username %> &nbsp;/&nbsp; <%= link_to "Logout", '/logout' %>
+        Signed in as <%=current_user.username %> <span>&nbsp;/&nbsp;</span> <%= link_to "Logout", '/logout' %>
+        <!-- <%#= link_to "Logout ", 'https://accounts.google.com/logout' %> -->
       <% else %>
-      <%= link_to 'Login', '/login', {:class => "links"} %> &nbsp;/&nbsp; <%= link_to 'Signup', '/signup', {:class => "links"}  %>  &nbsp;/&nbsp; <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", class: "links" %>
+      <%= link_to 'Login', '/login', {:class => "links"} %> <span>&nbsp;/&nbsp;</span> <%= link_to 'Signup', '/signup', {:class => "links"}  %>  <span>&nbsp;/&nbsp;</span> <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", class: "links" %>
       <% end %>
     </div>
     <%= yield %>
-
 
   <div class="javascript">
     <%= javascript_include_tag "application"%>
