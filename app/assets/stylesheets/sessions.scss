@@ -1,3 +1,13 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+input[type=text]:focus {
+  border-bottom: 1px solid #4dd0e1 !important;
+  box-shadow: 0 1px 0 0 #4dd0e1 !important;
+}
+
+input[type=password]:focus {
+  border-bottom: 1px solid #4dd0e1 !important;
+  box-shadow: 0 1px 0 0 #4dd0e1 !important;
+}
