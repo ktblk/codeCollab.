@@ -21,7 +21,4 @@ class WorkspacesController < ApplicationController
     }
     render json: token
   end
-
-
-
 end

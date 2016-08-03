@@ -3,7 +3,7 @@
 /* A simple and scalable hamburger menu using css transitions. */
 
 //= require materialize-sprockets
-
+//= require documents
 
 // Initialize collapse button
  // $(".button-collapse").sideNav();
