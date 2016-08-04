@@ -10,9 +10,11 @@ class DocumentsController < ApplicationController
     end
   end
 
+
+
+
   def create
     @document = current_user.documents.build(document_params)
-
     respond_to do |format|
       if @document.save
         format.html { redirect_to users_documents_path }
@@ -21,6 +23,13 @@ class DocumentsController < ApplicationController
         format.html { render :new }
         format.json { render json: @document.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update
+    @document = Document.find(params[:id])
+    if @document.update_attributes(document_params)
+      render :json => :success
     end
   end
 
