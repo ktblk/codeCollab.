@@ -8,12 +8,14 @@
     <% file = files.id %>
     <%= link_to workspace_path(f_id: file), id: "workspace" do %>
       File Open <%= file %>
+  <%end%>
 
-      <%= link_to 'Destroy', users_document_path(file),
-            data: {:confirm => 'Are you sure?'}, :method => :delete %>
-    <%end%>
-  </div>
+  <%= link_to 'Destroy', users_document_path(file), class: "delete-document", data:  { url: users_document_path(file) }%>
+</div>
+
+
 <%end%>
+
 
 <% @users_sign_in.each do |uo| %>
   <div class="user-online">
