@@ -1,0 +1,232 @@
+
+var startToken = function(lang){
+  $(".out").empty();
+  var TOKEN;
+  $.ajax({
+    url: '/gen_token',
+    success: function(data){
+      // console.log(data);
+      TOKEN = {time_created: data.time_created, msg_mac: data.msg_mac};
+      // console.warn(lang);
+      main(TOKEN, lang);
+    }
+  });
+};
+
+var main = function(token, lang){
+  var repl = new ReplitClient('api.repl.it', '80', lang , token);
+
+  repl.connect().then(
+    function() {
+      document.querySelector('.status').innerHTML = 'connected';
+      start(repl);
+    },
+    function() {
+      document.querySelector('.status').innerHTML = 'failed';
+    }
+  )
+}
+
+var fire_text = "";
+var init = function(lang) {
+  //// Initialize Firebase.
+  var firepadRef = getRef();
+
+  var editor = ace.edit("firepad-container");
+  editor.setTheme("ace/theme/textmate");
+  var session = editor.getSession();
+  session.setUseWrapMode(true);
+  session.setUseWorker(false);
+  if (lang == 'nodejs' || lang == undefined) {
+    lang = "javascript"
+  }
+  session.setMode(`ace/mode/${lang}`);
+
+
+  //// Create Firepad.
+  var file_id = window.location.search.split("=")
+  if ( file_id[0].includes("f_id") ) {
+    $.ajax({
+      url: "documents/retreive/"+ file_id[1],
+      type: "GET",
+      success: function(data) {
+        var firepad = Firepad.fromACE(firepadRef, editor, {
+          defaultText: data
+        });
+        console.log("HERE")
+        execute(firepad);
+      },
+      error: function (error){
+        console.warn("Error", error);
+      }
+    });
+  }else {
+    var firepad = Firepad.fromACE(firepadRef, editor, {
+      defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+    })
+
+    execute(firepad);
+  }
+}
+
+var execute = function(firepad){
+
+  firepad.on("ready", function(){
+    if ( window.location.search.split("=")[0].includes("f_id") ){
+      fire_text = firepad.getText();
+    } else {
+      firepad.setText(" ");
+      fire_text = firepad.getText();
+    }
+  });
+
+  firepad.on('synced', function(isSynced) {
+    // isSynced will be false immediately after the user edits the pad,
+    // and true when their edit has been saved to Firebase.
+    fire_text = firepad.getText();
+    // console.log(fire_text);
+  });
+   var file_id =  window.location.search.split("=");
+  if (window.location.search.split("=").includes("?f_id")) {
+    $("#saveFile").click(function() {
+      $.ajax({
+        url : "/users/documents/"+ file_id[1],
+        type: "PUT",
+        data : { document: { file: fire_text } },
+        success: function(data) {
+          console.log("Success");
+          window.location.href = '/'
+        },
+        error: function (error){
+          console.error(error);
+        }
+      });
+    });
+  }else{
+    $("#saveFile").click(function() {
+      $.ajax({
+        url : "/users/documents",
+        type: "POST",
+        data : { document: { file: fire_text } },
+        success: function(data) {
+          console.log("Success");
+          window.location.href = '/'
+        },
+        error: function (error){
+          console.error(error);
+        }
+      });
+    });
+  }
+}
+
+function start(repl) {
+
+  $( "#runcode" ).on('click', function() {
+    $(".out").empty();
+    // document.querySelector('.out').innerHTML = "";
+    repl.evaluate(
+      fire_text,
+      {
+        stdout: function(str) {
+          document.querySelector('.out').innerHTML += str;
+        }
+      }
+    ).then(
+      function(result) {
+        // document.querySelector('.result').innerHTML += (result.error || result.data) + '\n';
+      },
+      function(err) {
+        console.error(err);
+      }
+    );
+  });
+}
+
+var getRef = function() {
+  // var ref = new Firebase('https://firepad.firebaseio-demo.com');
+  var ref = new Firebase('https://firepadcollap.firebaseio.com/firepad');
+  var id = $('#currID').val();
+
+  var hash = window.location.hash.replace(/#/g, '');
+  if (hash) {
+    ref = ref.child(hash);
+  } else {
+    ref = ref.push(); // generate unique location.
+    window.location = window.location + '#' + ref.key(); // add it as a hash to the URL.
+  }
+  if (typeof console !== 'undefined')
+    console.log('Firebase data: ', ref.toString());
+  return ref;
+}
+
+var chatRoom = function(){
+  var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
+  var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+  var username = $('#currName').val();
+  chatRef.onAuth(function(authData) {
+    if (authData) {
+      chat.setUser(authData.uid, username);
+    } else {
+      chatRef.authAnonymously(function(error, authData) {
+        if (error) {
+          console.log(error);
+        }
+      });
+    }
+  });
+}
+
+function jsFunction(){
+  var myselect = document.querySelector("select");
+  return myselect.options[myselect.selectedIndex].value.toLowerCase();
+}
+
+
+$(document).on('change', function(){
+
+  startToken(jsFunction());
+  init(jsFunction());
+})
+
+$(document).ready(function(){
+    startToken(jsFunction());
+    init();
+    chatRoom();
+
+
+  $('#usersonline').on('click',function(event){
+    event.preventDefault();
+    var self = $(this);
+
+    swal({
+      title: "You are sending a request to Collab.",
+      text: "Confirm to connect.",
+      type: "info",
+      showCancelButton: true,
+      closeOnConfirm: true,
+      closeOnCancel: false,
+      confirmButtonText: "Collab",
+      confirmButtonColor: "#4dd0e1",
+      cancelButtonText: "Cancel",
+    },
+      function(isConfirm){
+        if (isConfirm) {
+         $.ajax({
+           url: self.data("url"),
+           method: "GET",
+           dataType: "JSON",
+          data: { location: $(location).attr('href') },
+           success: function(data) {
+            // window.location.assign(entire url inside window.location hash);
+            // $(location).attr('href');
+           }
+         });
+      } else {
+        swal("Cancelled", "Collab request cancelled.", "error");
+      }
+    });
+
+  });
+
+  });
