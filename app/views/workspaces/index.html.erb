@@ -13,10 +13,13 @@
   <%= link_to "| Back to Dashboard", root_path %>
 <div id="firepad-container"></div>
 
-<div class="current-users ">
- <%#= @users_sign_in%>
-  <% @users_sign_in %>
-</div>
+<% @users_friends.each do |uo| %>
+  <div class="user-online">
+      <strong>Full-name: </strong>
+      <%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %>
+      <% end %>
+  </div>
+
 
 
 <div id="firechat-wrapper"></div>

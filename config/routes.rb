@@ -23,4 +23,6 @@ Rails.application.routes.draw do
     resource :users , except: [:index]
     # For details on the DSL available within this file, see  http://guides.rubyonrails.org/routing.html
     get '/gen_token' => 'workspaces#gen_token'
+    get '/notify_create' => 'notifications#create'
+    get '/notify_delete' => 'notifications#destroy'
 end

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :documents
+  has_many :notifications
 
   has_many :workrooms, through: :documents
 

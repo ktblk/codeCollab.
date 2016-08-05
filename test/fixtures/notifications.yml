@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  person_to_notify: 1
+  location: MyString
+
+two:
+  user: two
+  person_to_notify: 1
+  location: MyString

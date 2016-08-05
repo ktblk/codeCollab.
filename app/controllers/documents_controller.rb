@@ -2,6 +2,7 @@ class DocumentsController < ApplicationController
   before_action :authorize
 
   def index
+    @notifications_cu = Notification.where(person_to_notify: current_user)
     @users_sign_in = User.where("status = ? AND id != ?", true, current_user)
     if session[:user_id].nil?
         redirect_to login_path
