@@ -9,6 +9,7 @@ class WorkspacesController < ApplicationController
   def index
     @users_sign_in = User.where(status: true)
     @users_friends = User.where("status = ? AND id != ?", true, current_user)
+    
   end
 
   def gen_token
@@ -22,12 +23,5 @@ class WorkspacesController < ApplicationController
     }
     render json: token
   end
-
-  def store
-        @user = User.find_by(:id)
-        @user.update(notification: true)
-        @user.save!
-
-    end
 
 end

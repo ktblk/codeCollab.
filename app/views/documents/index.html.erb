@@ -24,4 +24,9 @@
   </div>
 <%end%>
 
+<% @notifications_cu.each do |ncu|%>
+<strong>Notification:</strong>
+<%= link_to User.find(ncu.user_id).full_name, notify_delete_path(notify_id: ncu.person_to_notify) %>
+<%end%>
+
 <%= link_to 'WORKSPACE', workspace_path, id: "workspace" %>

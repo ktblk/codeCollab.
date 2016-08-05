@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160730145711) do
+ActiveRecord::Schema.define(version: 20160805025910) do
 
   create_table "documents", force: :cascade do |t|
     t.integer  "user_id"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 20160730145711) do
     t.datetime "updated_at", null: false
     t.text     "file"
     t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "person_to_notify"
+    t.string   "location"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
