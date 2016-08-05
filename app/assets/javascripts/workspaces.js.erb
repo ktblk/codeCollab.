@@ -86,21 +86,38 @@ var execute = function(firepad){
     fire_text = firepad.getText();
     // console.log(fire_text);
   });
-
-  $("#saveFile").click(function() {
-    $.ajax({
-      url : "/users/documents",
-      type: "POST",
-      data : { document: { file: fire_text } },
-      success: function(data) {
-        console.log("Success");
-        window.location.href = '/'
-      },
-      error: function (error){
-        console.error(error);
-      }
+   var file_id =  window.location.search.split("=");
+  if (window.location.search.split("=").includes("?f_id")) {
+    $("#saveFile").click(function() {
+      $.ajax({
+        url : "/users/documents/"+ file_id[1],
+        type: "PUT",
+        data : { document: { file: fire_text } },
+        success: function(data) {
+          console.log("Success");
+          window.location.href = '/'
+        },
+        error: function (error){
+          console.error(error);
+        }
+      });
     });
-  });
+  }else{
+    $("#saveFile").click(function() {
+      $.ajax({
+        url : "/users/documents",
+        type: "POST",
+        data : { document: { file: fire_text } },
+        success: function(data) {
+          console.log("Success");
+          window.location.href = '/'
+        },
+        error: function (error){
+          console.error(error);
+        }
+      });
+    });
+  }
 }
 
 function start(repl) {
