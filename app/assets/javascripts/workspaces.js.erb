@@ -190,7 +190,43 @@ $(document).on('change', function(){
 })
 
 $(document).ready(function(){
-  startToken(jsFunction());
-  init();
-  chatRoom();
-});
+    startToken(jsFunction());
+    init();
+    chatRoom();
+
+
+  $('#usersonline').on('click',function(event){
+    event.preventDefault();
+    var self = $(this);
+
+    swal({
+      title: "You are sending a request to Collab.",
+      text: "Confirm to connect.",
+      type: "info",
+      showCancelButton: true,
+      closeOnConfirm: true,
+      closeOnCancel: false,
+      confirmButtonText: "Collab",
+      confirmButtonColor: "#4dd0e1",
+      cancelButtonText: "Cancel",
+    },
+      function(isConfirm){
+        if (isConfirm) {
+         $.ajax({
+           url: self.data("url"),
+           method: "GET",
+           dataType: "JSON",
+          data: { location: $(location).attr('href') },
+           success: function(data) {
+            // window.location.assign(entire url inside window.location hash);
+            // $(location).attr('href');
+           }
+         });
+      } else {
+        swal("Cancelled", "Collab request cancelled.", "error");
+      }
+    });
+
+  });
+
+  });
