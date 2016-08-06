@@ -1,20 +1,26 @@
-<h2>Users Online</h2>
+<!-- <h2>Users Online</h2> -->
 <%#= button_tag "Create Workspace", :'data-url' => workspaces_path, id: "workspace" %>
 <!-- The create workspace link does not create a brand new editor -->
 
+<div class="create">
+<br><br><br><%= link_to 'CREATE NEW WORKSPACE', workspace_path, id: "workspace", class: "waves-effect waves-yellow yellow lighten-1 btn" %>
+</div>
+
+
+<div class="documentslist">
 <% @documents.each do |files| %>
   <div class="available-files">
-    <strong> File Number: </strong>
+    <strong> File No.: </strong>
     <% file = files.id %>
     <%= link_to workspace_path(f_id: file), id: "workspace" do %>
-      File Open <%= file %>
+     <%= file %> Open
   <%end%>
 
   <%= link_to 'Destroy', users_document_path(file), class: "delete-document", data:  { url: users_document_path(file) }%>
 </div>
 
-
 <%end%>
+</div>
 
 
 <% @users_sign_in.each do |uo| %>
@@ -28,5 +34,3 @@
 <strong>Notification:</strong>
 <%= link_to User.find(ncu.user_id).full_name, notify_delete_path(notify_id: ncu.person_to_notify) %>
 <%end%>
-
-<%= link_to 'WORKSPACE', workspace_path, id: "workspace" %>
