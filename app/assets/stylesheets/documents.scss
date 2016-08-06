@@ -19,11 +19,49 @@
   margin-top: 16px;
 }
 
-.documentslist {
-  display: flex;
-  justify-content: center;
-}
+// .documentslist {
+//   display: flex;
+//   justify-content: center;
+// }
 
 .create {
   text-align: center;
+}
+
+#workspace:hover {
+  color: #bdbdbd;
+}
+
+.col.s12.m6.l4 {
+  border: 1px dotted #b2ebf2;
+  // background-color: #e0f7fa;
+}
+
+.delete-document {
+  font-family: Avenir;
+  color: #ff5252;
+}
+
+.delete-document:hover {
+  color: #b71c1c;
+  transition: color 0.5s ease;
+}
+
+.delete {
+  color:#ff5252;
+  font-family: Avenir;
+}
+
+.delete:hover {
+  color: #b71c1c;
+  transition: color 0.5s ease;
+}
+
+.open {
+  color: #4dd0e1;
+}
+
+.open:hover {
+  color: #0097a7;
+  transition: color 0.5s ease;
 }

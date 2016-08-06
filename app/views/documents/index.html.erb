@@ -2,24 +2,31 @@
 <%#= button_tag "Create Workspace", :'data-url' => workspaces_path, id: "workspace" %>
 <!-- The create workspace link does not create a brand new editor -->
 
-<div class="create">
+<div class="create" style="margin-bottom: 50px;">
 <br><br><br><%= link_to 'CREATE NEW WORKSPACE', workspace_path, id: "workspace", class: "waves-effect waves-yellow yellow lighten-1 btn" %>
 </div>
 
-
-<div class="documentslist">
+<div class="container">
+<div class="row">
 <% @documents.each do |files| %>
-  <div class="available-files">
-    <strong> File No.: </strong>
+  <div class="col s12 m6 l4" style="padding: 35px; display:flex; justify-content:center;">
+    <div class="workspaceno"><strong> WORKSPACE NO.: <b><%=files.id%></b></strong><br></div>
     <% file = files.id %>
     <%= link_to workspace_path(f_id: file), id: "workspace" do %>
-     <%= file %> Open
+     <% file %>
+     <div class="open">
+       &nbsp;&nbsp;<i class="fa fa-file-text-o fa-3x"></i>&nbsp;&nbsp;Open&nbsp;&nbsp;
+     </div>
   <%end%>
-
-  <%= link_to 'Destroy', users_document_path(file), class: "delete-document", data:  { url: users_document_path(file) }%>
-</div>
+    <%= link_to users_document_path(file), class: "delete-document", data: { url: users_document_path(file) } do %>
+    <div class="delete">
+      &nbsp;<i class="fa fa-trash-o fa-3x"></i>Delete&nbsp;&nbsp;
+    </div>
+    <%end%>
+  </div>
 
 <%end%>
+</div>
 </div>
 
 
