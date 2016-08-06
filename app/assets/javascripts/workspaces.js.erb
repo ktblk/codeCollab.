@@ -18,11 +18,11 @@ var main = function(token, lang){
 
   repl.connect().then(
     function() {
-      document.querySelector('.status').innerHTML = 'connected';
+      document.querySelector('.status').innerHTML = 'Connected.';
       start(repl);
     },
     function() {
-      document.querySelector('.status').innerHTML = 'failed';
+      document.querySelector('.status').innerHTML = 'Failed';
     }
   )
 }
