@@ -1,7 +1,7 @@
 <br>
-<a href="#" style="color:#4dd0e1; font-size:25px; margin-left:15px;">codeCollab<span style="color:black;">.</span></a>
+<a href="/" style="color:#4dd0e1; font-size:25px; margin-left:15px;">codeCollab<span style="color:black;">.</span></a>
 
-<button style="margin-left: 10px; margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="runcode">RUN</button>
+<button style="margin-left: 10px; margin-bottom: 10px;" class="cyan lighten-2 btn" id="runcode">RUN</button>
 
 <% if current_user %>
   <button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="saveFile">Save File</button>
@@ -9,20 +9,24 @@
 
 <button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="dashboard"><%= link_to 'Back to Dashboard', root_path, id: "dash" %></button>
 
-
 <div class="language">
   <%= select :languages, nil, ['nodejs', 'ruby', 'python', 'java']%>
-  </div>
+</div>
 
 <div class="status">Connecting...</div>
-
 
 <br>
 <div style="width: 100%; overflow: hidden;">
 <div id="firepad-container" style="float: left;"></div>
-<pre class="out"></pre>
+<div class="pad" style="float:right; width: 60%; overflow: hidden;"><pre class="out"></pre>
+  <div id="firechat-wrapper" style="float:right;"></div>
+</div>
 </div>
 
+<!-- <ul id="slide-out" class="side-nav">
+   <a class="cross" href="#" style="font-size: 40px; margin-top: 10px;">x</a>
+ </ul>
+ <a href="#" data-activates="slide-out" class="button-collapse" style="float:right; margin-right: 18px; margin-top: -600px"><i class="fa fa-comments-o fa-2x" style="color:#4dd0e1;"></i></a> -->
 
 <% @users_friends.each do |uo| %>
   <div class="user-online">
@@ -31,14 +35,9 @@
       <% end %>
   </div>
 
-
-
-<div id="firechat-wrapper"></div>
-
-
-
 <%= hidden_field_tag :id, current_user.id, id: 'currID' %>
 <%= hidden_field_tag :id, current_user.username, id: 'currName' %>
+
 
 
 

@@ -1,7 +1,9 @@
+//= require firechat
+
 .language {
   width: 150px;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 15px;
   float: right;
   color: #4dd0e1;
   font-size: 15px;
@@ -9,13 +11,13 @@
 
 .status {
   float: right;
-  margin-top: 10px;
+  margin-top: 12px;
   margin-right: 10px;
   font-size: 15px;
 }
 
 #firepad-container {
-  width: 60%;
+  width: 40%;
   height: 550px;
   border: solid;
   border-color: #4dd0e1;
@@ -23,28 +25,34 @@
 }
 
 #firechat-wrapper {
-  height: 513px;
-  max-width: 325px;
-  padding: 10px;
-  border: 1px solid #ccc;
+  height: 550px;
+  width: 40%;
+  // padding: 5px;
+  // border: 1px solid #ccc;
   background-color: #fff;
-  margin: 50px auto;
+  // margin: 50px auto;
+  float: right;
   text-align: center;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 5px 25px #666;
-  -moz-box-shadow: 0 5px 25px #666;
-  box-shadow: 0 5px 25px #666;
+  // -webkit-border-radius: 4px;
+  // -moz-border-radius: 4px;
+  // border-radius: 4px;
+  // -webkit-box-shadow: 0 5px 25px #666;
+  // -moz-box-shadow: 0 5px 25px #666;
+  // box-shadow: 0 5px 25px #666;
+  // border: solid;
+  margin-top: -563px;
+  color:#f0f0f0;
 }
 
 .out {
   background-color: black;
-  color: white;
-  width: 40%;
+  color: #4dd0e1;
+  font-size: 13px;
+  width: 60%;
   height: 560px;
-  float: right;
+  // float: right;
   margin-top: -10px;
+  border-top: 3px solid black;
 }
 
 #dash {
@@ -58,6 +66,12 @@
 }
 
 button.waves-effect.waves-teal.cyan.lighten-2.btn:hover {
+  background-color: #4dd0e1;
+  color: #b2ebf2 !important;
+  transition: color 0.5s ease
+}
+
+.cyan:hover {
   background-color: #4dd0e1;
   color: #b2ebf2 !important;
   transition: color 0.5s ease
