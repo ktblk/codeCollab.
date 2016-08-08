@@ -29,7 +29,11 @@
 }
 
 #workspace:hover, #modalbutton:hover {
-  color: #bdbdbd;
+  color: #bdbdbd !important;
+}
+
+#workspace, #modalbutton {
+  font-size: 13px !important;
 }
 
 #modalbutton, #black {
@@ -38,7 +42,7 @@
 
 .notify:hover {
   color: #389da6 !important;
-  background-color: #fafafa;
+  background-color: #ffffff;
 }
 
 .notify {

@@ -9,26 +9,26 @@
 <button id="modalbutton" data-target="modal1" class="waves-effect waves-green green btn modal-trigger">&nbsp;&nbsp;YOUR COLLABORATORS&nbsp;&nbsp;</button>
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal bottom-sheet" style="height:600px;">
+  <div id="modal1" class="modal bottom-sheet" style="height:300px; background-color:white;">
 
-      <a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-default cyan lighten-1 btn" style="text-align:center; margin-top: 15px;">DONE</a>
-      
+      <a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-default cyan lighten-1 btn" style="text-align:center; margin-top: 15px; color:white;">DONE</a>
+
     <div class="modal-content" style="width: 100%; overflow: hidden;">
       <div class="modal-left" style="text-align:center; float:left; width:50%; height:200px">
-          <p id="black" style="font-size:15px;">COLLABORATORS</p>
+          <p id="black" style="font-size:18px;">COLLABORATORS</p>
       <% @users_sign_in.each do |uo| %>
         <div class="user-online">
             <!-- <strong id="black">COLLABORATOR: </strong> -->
-            <span id="black"><b><%= uo.full_name %></b><br></span>
+            <span id="black"><b style="font-size:13px;"><%= uo.full_name %></b><br></span>
         </div>
       <%end%>
       </div>
 
       <div class="modal-right" style="text-align:center; width:50%; height:200px; float:right;">
-          <p id="black" style="font-size:15px;">NOTIFICATIONS</p>
+          <p id="black" style="font-size:18px;">NOTIFICATIONS</p>
       <% @notifications_cu.each do |ncu|%>
       <!-- <strong id="black">NOTIFICATION:</strong> -->
-      <b><%= link_to User.find(ncu.user_id).full_name, notify_delete_path(notify_id: ncu.person_to_notify), :class => "notify" %></b> <br>
+      <b style="font-size:13px;"><%= link_to User.find(ncu.user_id).full_name, notify_delete_path(notify_id: ncu.person_to_notify), :class => "notify" %></b> <br>
       <%end%>
     </div>
 
@@ -40,8 +40,9 @@
 <div class="container">
 <div class="row">
 <% @documents.each do |files| %>
-  <div class="col s12 m6 l4" style="padding: 35px; display:flex; justify-content:center;">
-    <div class="workspaceno"><strong> WORKSPACE NO.: <b><%=files.id%></b></strong><br></div>
+  <div class="col s12 m6 l4" style="padding: 30px 20px 26px 30px; display:flex; justify-content:center;">
+    <div class="workspaceno" style="font-size:13px;"><strong> WORKSPACE NO. <b><%=files.id%></b></strong><br> <b><br><%=Array(current_user.documents.find(files.id).created_at)[4]%>/<%=Array(current_user.documents.find(files.id).created_at)[3]%>/<%=Array(current_user.documents.find(files.id).created_at)[5]%></br></b>
+    </div>
     <% file = files.id %>
     <%= link_to workspace_path(f_id: file), id: "workspace" do %>
      <% file %>
@@ -49,8 +50,17 @@
        &nbsp;&nbsp;<i class="fa fa-file-text-o fa-3x"></i>&nbsp;&nbsp;Open&nbsp;&nbsp;
      </div>
   <%end%>
+
+
+  <!-- <div class="workspaceno"><strong> WORKSPACE NO. <b><%=files.id%></b><b><br><%=Array(current_user.documents.find(files.id).created_at)[4]%>/<%=Array(current_user.documents.find(files.id).created_at)[3]%>/<%=Array(current_user.documents.find(files.id).created_at)[5]%></br></b>
+      </strong>
+      <br>
+      </div> -->
+
+
+
     <%= link_to users_document_path(file), class: "delete-document", data: { url: users_document_path(file) } do %>
-    <div class="delete">
+    <div class="delete" style="margin-top:3px">
       &nbsp;<i class="fa fa-trash-o fa-3x"></i>Delete
     </div>
     <%end%>
