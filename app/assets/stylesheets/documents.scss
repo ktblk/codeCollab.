@@ -28,8 +28,21 @@
   text-align: center;
 }
 
-#workspace:hover {
+#workspace:hover, #modalbutton:hover {
   color: #bdbdbd;
+}
+
+#modalbutton, #black {
+  color: black;
+}
+
+.notify:hover {
+  color: #389da6 !important;
+  background-color: #fafafa;
+}
+
+.notify {
+  color: #4dd0e1 !important;
 }
 
 .col.s12.m6.l4 {
