@@ -40,7 +40,7 @@ var init = function(lang) {
   if (lang == 'nodejs' || lang == undefined) {
     lang = "javascript"
   }
-  session.setMode(`ace/mode/${lang}`);
+  session.setMode('ace/mode/' + lang);
 
 
   //// Create Firepad.
