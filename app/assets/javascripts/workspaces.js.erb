@@ -62,7 +62,7 @@ var init = function(lang) {
     });
   }else {
     var firepad = Firepad.fromACE(firepadRef, editor, {
-      defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+      defaultText: '//Text Editing with codeCollab.\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
     })
 
     execute(firepad);
@@ -75,7 +75,7 @@ var execute = function(firepad){
     if ( window.location.search.split("=")[0].includes("f_id") ){
       fire_text = firepad.getText();
     } else {
-      firepad.setText(" ");
+      // firepad.setText(" ");
       fire_text = firepad.getText();
     }
   });

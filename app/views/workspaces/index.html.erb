@@ -1,14 +1,14 @@
 <br>
-<a href="/" style="color:#4dd0e1; font-size:25px; margin-left:15px;">codeCollab<span style="color:black;">.</span></a>
+<a href="/" style="color:#4dd0e1; font-size:25px; margin-left:15px;"><b>codeCollab<span style="color:black;">.</span></b></a>
 
-<button style="margin-left: 10px; margin-bottom: 10px;" class="cyan lighten-2 btn" id="runcode">RUN</button>
+<button style="margin-left: 10px; margin-bottom: 10px;" class="topbuttons cyan lighten-2 btn" id="runcode">RUN</button>
 
 <% if current_user %>
-  <button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="saveFile">SAVE</button>
+  <button style="margin-bottom: 10px;" class="topbuttons1 waves-effect waves-default cyan lighten-2 btn" id="saveFile">SAVE</button>
 <%end%>
 
-<button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="dashboard"><%= link_to 'HOME', root_path, id: "dash" %></button>
-<button id="modalbutton" data-target="modal1" style="margin-bottom: 10px; text-align:center; color:white;" class="waves-effect waves-green green btn modal-trigger">nav</button>
+<button style="margin-bottom: 10px;" class="topbuttons2 waves-effect waves-default cyan lighten-2 btn" id="dashboard"><%= link_to 'DOCS', root_path, id: "dash" %></button>
+<button id="modalbutton" data-target="modal1" style="margin-bottom: 10px; text-align:center; color:white;" class="topbuttons3 green btn modal-trigger">nav</button>
 
 
 
@@ -20,8 +20,8 @@
 
 <br>
 <div style="width: 100%; overflow: hidden;">
-<div id="firepad-container" style="float: left;"></div>
-<div class="pad" style="float:right; width: 60%; overflow: hidden;"><pre class="out"></pre>
+<div class="console" id="firepad-container" style="float: left;"></div>
+<div class="console2 pad" style="float:right; width: 60%; overflow: hidden;"><pre class="out"></pre>
   <div id="firechat-wrapper" style="float:right;"></div>
 </div>
 </div>
@@ -33,17 +33,17 @@
 
 
 
-  <div id="modal1" class="modal bottom-sheet" style="height:800px;">
+  <div id="modal1" class="modal bottom-sheet" style="height:800px; background-color:white;">
 
       <div style="text-align:center"><a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-green green btn" style="margin-top: 15px; color:white;">DONE</a></div>
 
     <div class="modal-content" style="width: 100%; overflow: hidden;">
 
       <div class="modal-left" style="text-align:center; float:left; width:50%; height:200px">
-        <p id="black" style="font-size:15px;">COLLABORATORS</p>
+        <p id="black" style="font-size:18px;">COLLABORATORS</p>
         <% @users_friends.each do |uo| %>
           <div class="user-online">
-              <b><%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %></b>
+              <b style="font-size:13px;"><%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %></b>
               <% end %>
           </div>
 
@@ -52,10 +52,10 @@
       </div>
 
       <div class="modal-right" style="text-align:center; width:50%; height:200px; float:right;">
-        <p id="black" style="font-size:15px;">RESOURCES</p>
+        <p id="black" style="font-size:18px;">RESOURCES</p>
         <a href="http://guides.rubyonrails.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY ON RAILS</a>
         <a href="http://ruby-doc.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY</a>
-        <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a>
+        <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a><br>
         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a>
         <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVA</a>
         <a href="https://api.jquery.com/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JQUERY</a>
