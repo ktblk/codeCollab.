@@ -41,13 +41,13 @@
 <div class="row">
 <% @documents.each do |files| %>
   <div class="col s12 m6 l4" style="padding: 30px 20px 26px 30px; display:flex; justify-content:center;">
-    <div class="workspaceno" style="font-size:13px;"><strong> WORKSPACE NO. <b><%=files.id%></b></strong><br> <b><br><%=Array(current_user.documents.find(files.id).created_at)[4]%>/<%=Array(current_user.documents.find(files.id).created_at)[3]%>/<%=Array(current_user.documents.find(files.id).created_at)[5]%></br></b>
+    <div class="workspaceno" style="font-size:13px;"><strong> WORKSPACE NO. <b><%=files.id%></b></strong><br> <b><%=Array(current_user.documents.find(files.id).created_at)[4]%>/<%=Array(current_user.documents.find(files.id).created_at)[3]%>/<%=Array(current_user.documents.find(files.id).created_at)[5]%></br></b>
     </div>
     <% file = files.id %>
     <%= link_to workspace_path(f_id: file), id: "workspace" do %>
      <% file %>
      <div class="open">
-       &nbsp;&nbsp;<i class="fa fa-file-text-o fa-3x"></i>&nbsp;&nbsp;Open&nbsp;&nbsp;
+       &nbsp;&nbsp;<i class="fa fa-file-code-o fa-3x"></i>&nbsp;&nbsp;Open&nbsp;&nbsp;
      </div>
   <%end%>
 
@@ -60,7 +60,7 @@
 
 
     <%= link_to users_document_path(file), class: "delete-document", data: { url: users_document_path(file) } do %>
-    <div class="delete" style="margin-top:3px">
+    <div class="delete">
       &nbsp;<i class="fa fa-trash-o fa-3x"></i>Delete
     </div>
     <%end%>
