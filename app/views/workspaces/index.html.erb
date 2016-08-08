@@ -4,10 +4,13 @@
 <button style="margin-left: 10px; margin-bottom: 10px;" class="cyan lighten-2 btn" id="runcode">RUN</button>
 
 <% if current_user %>
-  <button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="saveFile">Save File</button>
+  <button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="saveFile">SAVE</button>
 <%end%>
 
-<button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="dashboard"><%= link_to 'Back to Dashboard', root_path, id: "dash" %></button>
+<button style="margin-bottom: 10px;" class="waves-effect waves-teal cyan lighten-2 btn" id="dashboard"><%= link_to 'HOME', root_path, id: "dash" %></button>
+<button id="modalbutton" data-target="modal1" style="margin-bottom: 10px; text-align:center; color:white;" class="waves-effect waves-green green btn modal-trigger">nav</button>
+
+
 
 <div class="language">
   <%= select :languages, nil, ['nodejs', 'ruby', 'python', 'java']%>
@@ -28,15 +31,42 @@
  </ul>
  <a href="#" data-activates="slide-out" class="button-collapse" style="float:right; margin-right: 18px; margin-top: -600px"><i class="fa fa-comments-o fa-2x" style="color:#4dd0e1;"></i></a> -->
 
-<% @users_friends.each do |uo| %>
-  <div class="user-online">
-      <strong>Full-name: </strong>
-      <%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %>
-      <% end %>
+
+
+  <div id="modal1" class="modal bottom-sheet" style="height:800px;">
+
+      <div style="text-align:center"><a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-green green btn" style="margin-top: 15px; color:white;">DONE</a></div>
+
+    <div class="modal-content" style="width: 100%; overflow: hidden;">
+
+      <div class="modal-left" style="text-align:center; float:left; width:50%; height:200px">
+        <p id="black" style="font-size:15px;">COLLABORATORS</p>
+        <% @users_friends.each do |uo| %>
+          <div class="user-online">
+              <b><%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %></b>
+              <% end %>
+          </div>
+
+        <%= hidden_field_tag :id, current_user.id, id: 'currID' %>
+        <%= hidden_field_tag :id, current_user.username, id: 'currName' %>
+      </div>
+
+      <div class="modal-right" style="text-align:center; width:50%; height:200px; float:right;">
+        <p id="black" style="font-size:15px;">RESOURCES</p>
+        <a href="http://guides.rubyonrails.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY ON RAILS</a>
+        <a href="http://ruby-doc.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY</a>
+        <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a>
+        <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVA</a>
+        <a href="https://api.jquery.com/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JQUERY</a>
+        <a href="https://docs.python.org/3/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">PYTHON</a>
+        <!-- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a> -->
+      </div>
+
+    </div>
   </div>
 
-<%= hidden_field_tag :id, current_user.id, id: 'currID' %>
-<%= hidden_field_tag :id, current_user.username, id: 'currName' %>
+
 
 
 
