@@ -22,7 +22,13 @@
             <!-- <strong id="black">COLLABORATOR: </strong> -->
             <span id="black">
               <b style="font-size:13px;">
-                <%= uo.full_name || uo.inspect %>
+                <% if uo.full_name != nil %>
+                  <%= uo.full_name %>
+                <% elsif uo.name !=  nil %>
+                  <%= uo.name %>
+                <% else %>
+                  Anonymous
+                <% end %>
               </b>
           </span>
           <br>
