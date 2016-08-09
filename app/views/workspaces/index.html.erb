@@ -4,7 +4,7 @@
 <button style="margin-left: 10px; margin-bottom: 10px;" class="topbuttons cyan lighten-2 btn" id="runcode">RUN</button>
 
 <% if current_user %>
-  <button style="margin-bottom: 10px;" class="topbuttons1 waves-effect waves-default cyan lighten-2 btn" id="saveFile">SAVE</button>
+<button style="margin-bottom: 10px;" class="topbuttons1 waves-effect waves-default cyan lighten-2 btn" id="saveFile">SAVE</button>
 <%end%>
 
 <button style="margin-bottom: 10px;" class="topbuttons2 waves-effect waves-default cyan lighten-2 btn" id="dashboard"><%= link_to 'DOCS', root_path, id: "dash" %></button>
@@ -20,52 +20,56 @@
 
 <br>
 <div style="width: 100%; overflow: hidden;">
-<div class="console" id="firepad-container" style="float: left;"></div>
-<div class="console2 pad" style="float:right; width: 60%; overflow: hidden;"><pre class="out"></pre>
-  <div id="firechat-wrapper" style="float:right;"></div>
-</div>
+  <div class="console" id="firepad-container" style="float: left;"></div>
+  <div class="console2 pad" style="float:right; width: 60%; overflow: hidden;"><pre class="out"></pre>
+    <div id="firechat-wrapper" style="float:right;"></div>
+  </div>
 </div>
 
 <!-- <ul id="slide-out" class="side-nav">
-   <a class="cross" href="#" style="font-size: 40px; margin-top: 10px;">x</a>
- </ul>
- <a href="#" data-activates="slide-out" class="button-collapse" style="float:right; margin-right: 18px; margin-top: -600px"><i class="fa fa-comments-o fa-2x" style="color:#4dd0e1;"></i></a> -->
+<a class="cross" href="#" style="font-size: 40px; margin-top: 10px;">x</a>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse" style="float:right; margin-right: 18px; margin-top: -600px"><i class="fa fa-comments-o fa-2x" style="color:#4dd0e1;"></i></a> -->
 
 
 
- <div id="modal1" class="modal bottom-sheet" style="height: 600px; background-color:white;">
+<div id="modal1" class="modal bottom-sheet" style="height: 600px; background-color:white;">
 
-   <div style="text-align:center"><a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-green green btn" style="margin-top: 15px; color:white;">DONE</a></div>
+  <div style="text-align:center"><a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-green green btn" style="margin-top: 15px; color:white;">DONE</a></div>
 
-   <div class="modal-content" style="width: 100%; overflow: hidden;">
+  <div class="modal-content" style="width: 100%; overflow: hidden;">
 
+    <div class="row">
 
-       <div class="modal-left col s6" style="text-align:center; height:100px;">
-         <p id="black" style="font-size:18px;">COLLABORATORS</p>
-         <% @users_friends.each do |uo| %>
-         <div class="user-online">
-           <b style="font-size:13px;"><%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %></b>
-           <% end %>
-         </div>
+      <div class="modal-left col s6" style="text-align:center; height:300px;">
+        <p id="black" style="font-size:18px;">COLLABORATORS</p>
+        <% @users_friends.each do |uo| %>
+        <div class="user-online">
+          <b style="font-size:13px;"><%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %></b>
+          <% end %>
+        </div>
 
-         <%= hidden_field_tag :id, current_user.id, id: 'currID' %>
-         <%= hidden_field_tag :id, current_user.username, id: 'currName' %>
-       </div>
+        <%= hidden_field_tag :id, current_user.id, id: 'currID' %>
+        <%= hidden_field_tag :id, current_user.username, id: 'currName' %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="modal-right col s6" style="text-align:center; float: right; height:300px;">
+        <p id="black" style="font-size:18px;">RESOURCES</p>
+        <a href="http://guides.rubyonrails.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY ON RAILS</a>
+        <a href="http://ruby-doc.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY</a>
+        <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a>
+        <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVA</a>
+        <a href="https://api.jquery.com/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JQUERY</a>
+        <a href="https://docs.python.org/3/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">PYTHON</a>
+        <!-- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a> -->
+      </div>
+    </div>
 
-   <div class="modal-right col s6" style="text-align:center; height:300px;">
-     <p id="black" style="font-size:18px;">RESOURCES</p>
-     <a href="http://guides.rubyonrails.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY ON RAILS</a>
-     <a href="http://ruby-doc.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY</a>
-     <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a>
-     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a>
-     <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVA</a>
-     <a href="https://api.jquery.com/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JQUERY</a>
-     <a href="https://docs.python.org/3/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">PYTHON</a>
-     <!-- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a> -->
-   </div>
- </div>
+  </div>
 
- </div>
+</div>
 
 
 
@@ -74,17 +78,17 @@
 
 <!--
 <script type="text/javascript">
-  var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
-  var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
-  chatRef.onAuth(function(authData) {
-    if (authData) {
-      chat.setUser(authData.uid, '<%=current_user.username %>');
-    } else {
-      chatRef.authAnonymously(function(error, authData) {
-        if (error) {
-          console.log(error);
-        }
-      });
-    }
-  });
+var chatRef = new Firebase("https://firechat-demo.firebaseio.com");
+var chat = new FirechatUI(chatRef, document.getElementById("firechat-wrapper"));
+chatRef.onAuth(function(authData) {
+if (authData) {
+chat.setUser(authData.uid, '<%=current_user.username %>');
+} else {
+chatRef.authAnonymously(function(error, authData) {
+if (error) {
+console.log(error);
+}
+});
+}
+});
 </script> -->
