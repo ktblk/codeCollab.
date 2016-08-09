@@ -6,8 +6,8 @@ class User < ApplicationRecord
   has_many :workrooms, through: :documents
 
 
-  validates_presence_of :first_name
-  validates_presence_of :last_name
+  # validates_presence_of :first_name
+  # validates_presence_of :last_name
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
