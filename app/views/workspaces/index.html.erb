@@ -37,11 +37,18 @@
 
   <div style="text-align:center"><a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-green green btn" style="margin-top: 15px; color:white;">DONE</a></div>
 
-  <div class="modal-content" style="width: 100%; overflow: hidden;">
+      <div class="modal-content col s6" style="text-align:center;">
+        <p id="black" style="font-size:18px;">RESOURCES</p>
+        <a href="http://guides.rubyonrails.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY ON RAILS</a>
+        <a href="http://ruby-doc.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY</a>
+        <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a>
+        <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVA</a>
+        <a href="https://api.jquery.com/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JQUERY</a>
+        <a href="https://docs.python.org/3/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">PYTHON</a>
 
-    <div class="row">
+        <br><br>
 
-      <div class="modal-left col s6" style="text-align:center; height:300px;">
         <p id="black" style="font-size:18px;">COLLABORATORS</p>
         <% @users_friends.each do |uo| %>
         <div class="user-online">
@@ -51,25 +58,11 @@
 
         <%= hidden_field_tag :id, current_user.id, id: 'currID' %>
         <%= hidden_field_tag :id, current_user.username, id: 'currName' %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="modal-right col s6" style="text-align:center; float: right; margin-top: -343px; height:300px;">
-        <p id="black" style="font-size:18px;">RESOURCES</p>
-        <a href="http://guides.rubyonrails.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY ON RAILS</a>
-        <a href="http://ruby-doc.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY</a>
-        <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a>
-        <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVA</a>
-        <a href="https://api.jquery.com/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JQUERY</a>
-        <a href="https://docs.python.org/3/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">PYTHON</a>
-        <!-- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a> -->
-      </div>
-    </div>
 
-  </div>
+      </div>
 
 </div>
+
 
 
 
