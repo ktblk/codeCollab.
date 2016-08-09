@@ -1,6 +1,6 @@
 OmniAuth.config.logger = Rails.logger
 OmniAuth.config.on_failure = SessionsController.action(:new)
-OmniAuth.config.full_host = Rails.env.production? ? 'http://codecollab.co/' : 'http://localhost:3000'
+OmniAuth.config.full_host = Rails.env.production? ? 'http://codecollab.co' : 'http://localhost:3000'
 
 
 Rails.application.config.middleware.use OmniAuth::Builder do
