@@ -28,7 +28,7 @@ $('.button-collapse').sideNav({
 
  $(document).ready(function(){
      $(".button a").click(function(){
-         $(".overlay").fadeIn(1000);
+         $(".overlay").fadeIn(600);
         $(this).toggleClass('btn-open').toggleClass('btn-close');
      });
  });
