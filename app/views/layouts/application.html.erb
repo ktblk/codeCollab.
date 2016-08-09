@@ -13,6 +13,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+<body class="<%= "#{ controller.controller_name} " "#{controller.action_name}"%>">
 
 <!-- <div class="button">
 	<a class="btn-open" href="#"></a>
@@ -71,7 +72,7 @@
 </div>
 
 
-  <body class="<%= "#{ controller.controller_name} " "#{controller.action_name}"%>">
+
     <% if controller_name != "workspaces"%>
       <h1 class="project"><b>codeCollab<span>.</span></b></h1>
 

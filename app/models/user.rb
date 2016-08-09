@@ -5,6 +5,10 @@ class User < ApplicationRecord
 
   has_many :workrooms, through: :documents
 
+
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
       user.provider = auth.provider
@@ -25,7 +29,7 @@ class User < ApplicationRecord
   end
 
   def full_name
-    "#{self.first_name.capitalize} #{self.last_name.capitalize}"
+    (self.first_name.capitalize + " " + self.last_name.capitalize) rescue nil
   end
 
 end
