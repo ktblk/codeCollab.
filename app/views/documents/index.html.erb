@@ -22,7 +22,7 @@
             <!-- <strong id="black">COLLABORATOR: </strong> -->
             <span id="black">
               <b style="font-size:13px;">
-                <%= uo.full_name %>
+                <%= uo.full_name || uo.name %>
               </b>
           </span>
           <br>
@@ -34,7 +34,8 @@
           <p id="black" style="font-size:18px;">NOTIFICATIONS</p>
       <% @notifications_cu.each do |ncu|%>
       <!-- <strong id="black">NOTIFICATION:</strong> -->
-      <b style="font-size:13px;"><%= link_to User.find(ncu.user_id).full_name, notify_delete_path(notify_id: ncu.person_to_notify), :class => "notify" %></b> <br>
+      <% user = User.find(ncu.user_id) %>
+      <b style="font-size:13px;"><%= link_to user.full_name || user.name, notify_delete_path(notify_id: ncu.person_to_notify), :class => "notify" %></b> <br>
       <%end%>
     </div>
 
