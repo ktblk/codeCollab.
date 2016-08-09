@@ -195,7 +195,7 @@ $(document).ready(function(){
     chatRoom();
 
 
-  $('#usersonline').on('click',function(event){
+  $(document).on('click','#usersonline', function(event){
     event.preventDefault();
     var self = $(this);
 
@@ -218,8 +218,7 @@ $(document).ready(function(){
            dataType: "JSON",
           data: { location: $(location).attr('href') },
            success: function(data) {
-            // window.location.assign(entire url inside window.location hash);
-            // $(location).attr('href');
+            console.info(data);
            }
          });
       } else {
