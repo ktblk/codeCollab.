@@ -93,7 +93,8 @@
         Hello, <b><%=current_user.username || current_user.name %></b>! You're logged in. <span>&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;</span> <%= link_to "Logout", '/logout', {:class => "links"} %>
         <!-- <%#= link_to "Logout ", 'https://accounts.google.com/logout' %> -->
       <% else %>
-      <%= link_to 'Login', '/login', {:class => "links"} %> <span>&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;</span> <%= link_to 'Signup', '/signup', {:class => "links"}  %>  <span>&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;</span> <%= link_to 'Sign in with Google', '/auth/google_oauth2', id: "sign_in", class: "links" %>
+      <%= link_to 'Login', '/login', {:class => "links"} %> <span>&nbsp;&nbsp;<b>/</b>&nbsp;&nbsp;</span> <%= link_to 'Signup', '/signup', {:class => "links"}  %>  <span>&nbsp;&nbsp;<b></b>&nbsp;&nbsp;</span>
+      <%#= link_to 'Sign in with Google', '/auth/google_oauth2', id: "sign_in", class: "links" %>
       <% end %>
     </div>
     <% end %>
