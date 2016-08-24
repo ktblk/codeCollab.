@@ -62,3 +62,24 @@ $('.button-collapse').sideNav({
      $(".button2 a").toggleClass('btn-open2').toggleClass('btn-close');
      open = false;
  });
+
+ $(document).ready(function () {
+     //Increment the idle time counter every minute.
+     var idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+     //Zero the idle timer on mouse movement.
+     $(this).mousemove(function (e) {
+         idleTime = 0;
+     });
+     $(this).keypress(function (e) {
+         idleTime = 0;
+     });
+ });
+
+ function timerIncrement() {
+   var logoutUrl = '/logout'; // URL to logout page.
+     idleTime = idleTime + 1;
+     if (idleTime > 15) { // 20 minutes
+         window.location = logoutUrl;
+     }
+ }
