@@ -143,9 +143,12 @@ function start(repl) {
   });
 }
 
+
+
 var getRef = function() {
   // var ref = new Firebase('https://firepad.firebaseio-demo.com');
-  var ref = new Firebase('https://mikod.firebaseio.com/firepad');
+
+  var ref = new Firebase('https://codecollab-c049c.firebaseio.com/firepad');
   var id = $('#currID').val();
 
   var hash = window.location.hash.replace(/#/g, '');

@@ -33,14 +33,14 @@
 
 
 
-  <div id="modal1" class="modal bottom-sheet" style="height:800px; background-color:white;">
+  <div id="modal1" class="modal" style="height:800px; width: 75%; background-color:white;">
 
       <div style="text-align:center"><a href="#!" id="modalbutton" class="modal-action modal-close waves-effect waves-green green btn" style="margin-top: 15px; color:white;">DONE</a></div>
 
     <div class="modal-content" style="width: 100%; overflow: hidden;">
 
-      <div class="modal-left" style="text-align:center; float:left; width:50%; height:200px">
-        <p id="black" style="font-size:18px;">COLLABORATORS</p>
+      <div class="modal-left" style="text-align:center; width:50%; height:200px; margin-left: 24%; margin-right50%;">
+        <p id="black" style="font-size:18px; text-align: center;">COLLABORATORS</p>
         <% @users_friends.each do |uo| %>
           <div class="user-online">
               <b style="font-size:13px;"><%= link_to uo.full_name, "#", data: { url: notify_create_path(user_id: uo.id, cu_id: current_user.id) }, id: "usersonline" %></b>
@@ -49,10 +49,11 @@
 
         <%= hidden_field_tag :id, current_user.id, id: 'currID' %>
         <%= hidden_field_tag :id, current_user.username, id: 'currName' %>
-      </div>
-
-      <div class="modal-right" style="text-align:center; width:50%; height:200px; float:right;">
-        <p id="black" style="font-size:18px;">RESOURCES</p>
+        </div>
+      <br>
+      <br>
+      <div class="modal-right" style="text-align:center; width:50%; height:200px; margin-left: 24%; margin-right50%;">
+        <p id="black" style="font-size:18px; text-align: center;">RESOURCES</p>
         <a href="http://guides.rubyonrails.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY ON RAILS</a>
         <a href="http://ruby-doc.org/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RUBY</a>
         <a href="http://www.pragtob.info/rails-beginner-cheatsheet/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">RAILS CHEATSHEET</a><br>
@@ -62,6 +63,7 @@
         <a href="https://docs.python.org/3/" target="_blank" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">PYTHON</a>
         <!-- <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" style="color:white; margin-bottom: 10px;" class="waves-effect waves-amber amber btn" id="saveFile">JAVASCRIPT</a> -->
       </div>
+
 
     </div>
   </div>
